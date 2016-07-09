@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+<h:form>
+<table border="2" align="center">
+<tr align="center">
+<td colspan="3"><b><h:outputText value="Inicio de Sesion" /></b></td>
+</tr>
+<tr>
+<td><b><h:outputText value="Usuario"/></b></td><td><h:inputText value="#{UsuarioBean.usuario}"
+id="username" validator="#{UsuarioBean.valida1}"/></td>
+<td rowspan="2"><h:graphicImage url="/imagenes/logo.jpg" style="height: 59px; width: 76px; "/></td>
+</tr>
+<tr>
+<td><b><h:outputText value="Clave"/></b></td><td><h:inputSecret value="#{UsuarioBean.clave}"/></td>
+</tr>
+<tr align="center">
+<td colspan="3"><p:commandButton value="Acceder" update="@form" action="#{UsuarioBean.validar_login}" icon="ui-icon-home" onclick="start()"/><p:commandButton value="Limpiar" icon="ui-icon-home"/></td>
+</tr>
+<tr>
+<td colspan="3">
+<p:messages for="username"></p:messages>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p:progressBar widgetVar="pb" />
+</td>
+</tr>
+</table>
+</h:form>
+
+<script type="text/javascript">
+function start() {
+this.progressInterval = setInterval(function(){
+PF('pb').setValue(PF('pb').getValue() + 50);
+}, 2000);
+}
+function cancel() {
+clearInterval(this.progressInterval);
+PF('pb').setValue(0);
+}
+</script>
+
+</h:body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+<h:body>
+<h:form>
+<table border="2">
+<tr>
+<td colspan="3"><h:outputText value="PRINCIPAL"/></td>
+</tr>
+<tr><td><h:commandLink value="Agregar" actionListener="#{UsuarioBean.accion_agrega}" action="AGREGAR_USUARIO"/></td></tr>
+<tr><td><h:commandLink value="Modificar" actionListener="#{UsuarioBean.accion_modifica}" action="AGREGAR_USUARIO"/></td></tr>
+<tr><td><h:commandLink value="Buscar" action="BUSCAR_USUARIO"/></td></tr>
+</table>
+</h:form>
+</h:body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+<h:form>
+<table align="center" border="2">
+<tr align="center"><td colspan="2"><b><h:outputText value="Agregar Usuario" rendered="#{!UsuarioBean.accion_modificar}"/><h:outputText value="Modificar Usuario" rendered="#{UsuarioBean.accion_modificar}"/></b></td>
+</tr>
+<tr>
+<td><h:outputText value="Usuario"/></td><td><h:inputText value="#{UsuarioBean.usuario}" rendered="#{!UsuarioBean.accion_modificar}"/><h:inputText disabled="true" value="#{UsuarioBean.usuario}" rendered="#{UsuarioBean.accion_modificar}"></h:inputText> </td>
+</tr>
+<tr><td><h:outputText value="Clave"/></td><td><h:inputText value="#{UsuarioBean.clave}"/></td>
+</tr>
+<tr><td><h:outputText value="Estado"/></td><td>
+<p:selectOneMenu value="#{UsuarioBean.estado}">
+<f:selectItem itemValue="-1" itemLabel="-Seleccione-"></f:selectItem>
+<f:selectItem itemValue="0" itemLabel="Inactivo"></f:selectItem>
+<f:selectItem itemValue="1" itemLabel="Activo"></f:selectItem>
+</p:selectOneMenu>
+</td>
+</tr>
+<tr><td><h:outputText value="Fecha_registro"/></td>
+<td><p:calendar value="#{UsuarioBean.f_registro}" mode="popup" popupIconOnly="true" showOn="button" pattern="dd/MM/yyyy">
+</p:calendar></td>
+</tr>
+<tr align="center"><td colspan="2"><p:commandButton value="Agregar" actionListener="#{UsuarioBean.agregarUsuario}" action="EXITO" rendered="#{!UsuarioBean.accion_modificar}" icon="ui-icon-disk"/><p:commandButton value="Modificar" actionListener="#{UsuarioBean.modificarUsuario}" action="EXITO" rendered="#{UsuarioBean.accion_modificar}"/></td>
+</tr>
+</table>
+</h:form>
+</h:body>
+</html>

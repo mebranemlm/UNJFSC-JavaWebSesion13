@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+<h:form id="formulario1">
+<table border="2" align="center">
+<tr align="center"><td colspan="3"><b><h:outputText value="Busqueda de Usuario" color="red"/></b></td>
+</tr>
+<tr><td><b><h:outputText value="Ingresar Clave:"/></b></td><td><h:inputText value="#{UsuarioBean.clave}"/></td><td><h:commandButton value="Buscar" actionListener="#{UsuarioBean.buscarlistaUsuarios}" action="BUSCAR_USUARIO"/></td>
+</tr>
+<tr align="center">
+<td colspan="3">
+<p:dataTable rows="4" var="listaCargada" value="#{UsuarioBean.listaUsuarios}" border="2" paginator="true">
+<f:facet name="header"><h:outputText value="Lista de Usuarios"/></f:facet>
+<p:column>
+<f:facet name="header"><h:outputText value="Usuario"/></f:facet>
+<h:outputText value="#{listaCargada.usuario}"></h:outputText>
+</p:column>
+<p:column>
+<f:facet name="header"><h:outputText value="Clave"/></f:facet>
+<h:outputText value="#{listaCargada.clave}"></h:outputText>
+</p:column>
+<p:column>
+<f:facet name="header"><h:outputText value="Estado"/></f:facet>
+<h:outputText value="#{listaCargada.estado}"></h:outputText>
+</p:column>
+<p:column>
+<f:facet name="header"><h:outputText value="Fecha_Registro"/></f:facet>
+<h:outputText value="#{listaCargada.f_registro}">
+<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+</h:outputText>
+</p:column>
+<p:column>
+<f:facet name="header"><h:outputText value="Acciones"/></f:facet>
+<p:commandLink value="Eliminar" actionListener="#{UsuarioBean.seleccionfila}" onclick="PF('cd').show();">
+<f:attribute name="atributo_idusu" value="#{listaCargada.usuario}"></f:attribute>
+</p:commandLink>
+<p:confirmDialog 
+	message="Desea eliminar?" 
+	header="Confirmar!!" 
+	severity="alert" 
+	widgetVar="cd">
+	
+	<p:commandButton 
+		value="Si" 
+		actionListener="#{UsuarioBean.eliminarUsuario}"
+		ajax="true" 
+		update="formulario1" 
+		onclick="PF('cd').hide();">	
+	</p:commandButton>
+	<p:commandButton 
+		value="No" 
+		onclick="PF('cd').hide();" 
+		type="button" />
+</p:confirmDialog>
+
+</p:column>
+<f:facet name="footer"><h:outputText value="Existen #{UsuarioBean.tamano_lista} registros"/></f:facet>
+</p:dataTable>
+</td>
+</tr>
+</table>
+</h:form>
+</h:body>
+</html>
